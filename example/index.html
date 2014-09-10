@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
-	<body>
-		
-		<h1>Example ÐApp</h1>
-		<p>This ÐApp's private key is: <span id="key">unknown</span>.</p>
+  <body>
+    
+    <h1>Example ÐApp</h1>
+    <p>This ÐApp's private key is: <span id="key">unknown</span>.</p>
 
-		<script>
-			eth.ready( function(){
-				console.log( 'Example ÐApp Ready.');
+    <script>
 
-				eth.getKey( function(err,key) {
-					console.log( 'Example ÐApp getKey');
-					document.getElementById( 'key' ).innerHTML = key;
-				});
-			});
-		</script>
-	</body>
+      window.onload = function(){
+        console.log( 'Example ÐApp Ready.');
+
+        eth.getKey( function(err,key) {
+          console.log( 'Example ÐApp getKey');
+          document.getElementById( 'key' ).innerHTML = key;
+        });
+      }
+      
+    </script>
+  </body>
 </html>
