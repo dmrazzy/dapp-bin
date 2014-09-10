@@ -1,0 +1,46 @@
+{
+
+  // Example dapp.json
+  // All properties are optional, but this file should
+  // contain at least an "html" or "contract/s"
+
+  "name": "example",
+  "version": "0.0.1",
+  
+  "title": "Example DApp",
+  "description": "This is an Example Ethereum DApp.",
+  
+  "author": "Doug E.",
+  "license": "MIT",
+  "contributors:" [],
+  "maintainers": [],
+
+  "repository": {
+    "type": "git",
+    "url": "git://example.com/example.git"
+  },  
+  
+  "html": "index.html",
+  
+  "contract": {
+    "lll": "example.lll"
+  },
+  "contracts": [
+    { "lll": "example.lll" },
+    { 
+      "lll": "example.lll",
+      "serpent": "example.se"
+    }
+  ],
+
+  "assets": [
+    "about.html",
+    "imgs/logo.png",
+    "config.json"
+  ],
+
+  "intents": [
+    "eth:?dapp=example",
+    "eth:?example=*"
+  ]
+}
