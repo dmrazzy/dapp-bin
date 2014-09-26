@@ -1,9 +1,4 @@
 {
-
-  // Example dapp.json
-  // All properties are optional, but this file should
-  // contain at least an "html" or "contract/s"
-
   "name": "example",
   "version": "0.0.1",
   
@@ -12,7 +7,7 @@
   
   "author": "Doug E.",
   "license": "MIT",
-  "contributors:" [],
+  "contributors": [],
   "maintainers": [],
 
   "repository": {
