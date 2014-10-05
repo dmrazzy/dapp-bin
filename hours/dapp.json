@@ -1,0 +1,20 @@
+{
+  "name": "hours",
+  "version": "0.0.1",
+  
+  "title": "Hours: TimeBank",
+  "description": "Hours is a prototype TimeBank",
+  "url": "http://desperado-theory.blogspot.be/2014/10/prototype-timebank-on-ethereum.html",
+  
+  "author": "Desperado PEREZ",
+  
+  "html": "index.html",
+  
+  "contract": {
+    "serpent": "hours.se"
+  },
+
+  "assets": [
+    "hour.png"
+  ]
+}

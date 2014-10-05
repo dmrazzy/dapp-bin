@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Hours</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js">
+  <script type="text/javascript">
+  //change this contract address to the one you have created!
+  var contractAddress = "0x022a6ef6cbbd383073c2c50feccc9565bd2c8da8"
+  var assetFrom = eth.secretToAddress(eth.key) + 1
+  var debtFrom = eth.secretToAddress(eth.key) + 2       
+  function createTransaction() {
+    var receiverAddress = '0x' + document.querySelector("#receiverAddress").value;
+    var amount = document.querySelector("#amount").value
+    var data = eth.pad(receiverAddress, 32) + eth.pad(amount, 32);
+    eth.transact({from: eth.key, value: 0, to: contractAddress, data: data, gas: 5000, gasPrice: 100000}, function() {})
+  }
+  eth.watch({altered: {at: eth.secretToAddress(eth.key), id: contractAddress}}).changed(function() {
+    document.getElementById("contractAddress").innerText = contractAddress
+    document.getElementById("assetfrom").innerText = assetFrom
+    document.getElementById("debtfrom").innerText = debtFrom
+    document.getElementById("asset").innerText = eth.toDecimal(eth.stateAt(contractAddress, assetFrom))
+    document.getElementById("debt").innerText = eth.toDecimal(eth.stateAt(contractAddress, debtFrom))
+      }); 
+   </script>
+</head>
+<body>
+  <div class="header">
+    <h2 class="text-muted">Hours <img src="hour.png" width="100" /></h2>
+    Contract: <strong id="contractAddress"></strong>
+  </div>
+  <div class="jumbotron">
+      Assets Account: <strong id="assetfrom"></strong><br/>
+      Assets: <strong id="asset"></strong> HRS<br/>
+      Debts Account: <strong id="debtfrom"></strong><br/>
+      Debt: <strong id="debt"></strong> HRS<br/>
+    <br>
+    <div>
+      <div class="form-group">
+        <input id="receiverAddress" class="form-control" type="text" placeholder="Receiver address"></input><br>
+        <input id="amount" class="form-control" type="text" placeholder="Amount"></input><br>
+      </div>
+      <button class="btn btn-default" onclick="createTransaction();">Send!</button>
+    </div>
+  </div>
+</body>
+</html>

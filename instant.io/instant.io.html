@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>instant.io</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="/main.css" charset="utf-8">
+	</head>
+	<body>
+
+		<h1>instant.io</h1>
+		<h3>Drag-and-drop a file (or files) to begin seeding</h3>
+		<form>
+			<label for="infoHash">Download a file by info hash</label>
+			<input name="infoHash">
+			<button type="submit">Download</button>
+		</form>
+
+		<h3>Log</h3>
+		<div class="log"></div>
+
+		<footer>
+			<p>Run <code>localStorage.debug = '*'</code> in the console to get detailed log output.</p>
+			<p>Powered by <a href="http://webtorrent.io">WebTorrent</a>. Code available on <a href="https://github.com/feross/instant.io">GitHub</a>. MIT License.</p>
+		</footer>
+
+		<script src="/bundle.js"></script>
+	</body>
+</html>
