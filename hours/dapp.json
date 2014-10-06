@@ -9,6 +9,7 @@
   "author": "Desperado PEREZ",
   
   "html": "index.html",
+  "iconAsset": "hour.png",
   
   "contract": {
     "serpent": "hours.se"
