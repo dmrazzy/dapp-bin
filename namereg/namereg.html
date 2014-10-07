@@ -30,9 +30,17 @@
       }
     </style>
     <script type="text/javascript">
-      var configAddr = "0x661005d2720d855f1d9976f88bb10c1a3398c77f";
-      var nameRegAddr = eth.stateAt(configAddr, "0");
-      var dnsRegAddr = eth.stateAt(configAddr, "4");
+      var configAddr = "661005d2720d855f1d9976f88bb10c1a3398c77f";
+      var nameRegAddr, dnsRegAddr = null;
+
+      eth.stateAt(configAddr, "\0", function(err, value){
+        nameRegAddr = value;
+      });
+
+      eth.stateAt(configAddr, "4", function(err, value){
+        dnsRegAddr = value;
+      })
+      
       var regName = function() {
         var name = document.getElementById("regname").value;
         if (name != "") {
