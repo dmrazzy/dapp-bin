@@ -31,8 +31,8 @@
     </style>
     <script type="text/javascript">
       var configAddr = "0x661005d2720d855f1d9976f88bb10c1a3398c77f";
-      var nameRegAddr = eth.stateAt(configAddr, "0", 0);
-      var dnsRegAddr = eth.stateAt(configAddr, "4", 0);
+      var nameRegAddr = eth.stateAt(configAddr, "0");
+      var dnsRegAddr = eth.stateAt(configAddr, "4");
       var regName = function() {
         var name = document.getElementById("regname").value;
         if (name != "") {
@@ -64,10 +64,14 @@
         }
       }
       var lookupName = function() {
-        document.getElementById("addr").value = eth.stateAt(nameRegAddr, eth.fromAscii(document.getElementById("name").value)).substr(2);
+        eth.stateAt( nameRegAddr, eth.fromAscii( document.getElementById( "name" ).value ), function(err, value){
+          document.getElementById("addr").value = value.substr(2);
+        });
       }
       var lookupAddr = function() {
-        document.getElementById("name").value = eth.toAscii(eth.stateAt(nameRegAddr, "0x" + document.getElementById("addr").value));
+        eth.stateAt( nameRegAddr, "0x", function(err, value){
+          document.getElementById("addr").value = value.substr(2);
+        });
       }
     </script>
   </head>

@@ -7,14 +7,14 @@
 
     <script>
 
-      window.onload = function(){
+      eth.ready( function(){
         console.log( 'Example ÐApp Ready.');
 
         eth.getKey( function(err,key) {
-          console.log( 'Example ÐApp getKey');
+          console.log( 'Example ÐApp getKey. ', err, key);
           document.getElementById( 'key' ).innerHTML = key;
         });
-      }
+      });
       
     </script>
   </body>
