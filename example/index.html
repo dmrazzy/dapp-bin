@@ -10,10 +10,12 @@
       eth.ready( function(){
         console.log( 'Example ÐApp Ready.');
 
-        eth.getKey( function(err,key) {
-          console.log( 'Example ÐApp getKey. ', err, key);
-          document.getElementById( 'key' ).innerHTML = key;
+        eth.getKey( function (err, key) {
+          if (err) throw err
+          console.log( 'Example ÐApp getKey. ', key);
+          $('#key' ).html( key );
         });
+        
       });
       
     </script>

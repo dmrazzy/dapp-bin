@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    
+    <h1>Etherchain</h1>
+    <table id="blocks"></table>
+    <button class="more">Load more blocks</button>
+
+    <style>
+      html, body {
+        font-family: monospace;
+      }
+      #blocks {
+        display: block;
+      }
+      .json {
+        display: none;
+      }
+      .show .json {
+        display: block;
+      }
+      table {
+        border-collapse: collapse;
+      }
+
+      td, th {
+        border: 1px solid #999;
+        padding: 0.5rem;
+        text-align: left;
+      }
+
+    </style>
+
+    <script>
+
+      eth.ready( function() {
+
+        var $blocks = $('#blocks')
+        var lastBlockNum = null
+
+        function getBlocksFrom(x, count) {
+          eth.block( x, function(err, block){
+            if (err) {
+              console.log( "Failed to get block", x, arguments )
+              return;
+            }
+            console.log( block )
+
+            var $block = $( '<tr />')
+            var json = JSON.stringify(block).split(',').join(',\n');
+
+            $block.html( "<td class='number'>" + block.number + "</td><td><div class='hash'>Hash: <a href=''>" + block.hash + "</a></div><pre class='json'>" + json + "</pre></td><td>txs: "+ block.transactions.Length + "</td><td><button>info</button></td>" )
+            $blocks.append( $block )
+            $block.find('button').click( function() {
+              $(this).closest('tr').toggleClass('show');
+            })
+            
+            lastBlockNum = block.number
+            if (count >= 0) getBlocksFrom( block.number - 1, count - 1 )
+          })  
+        }
+
+        $('.more').click( function(){
+          getBlocksFrom( lastBlockNum, 10 )
+        });
+
+        getBlocksFrom( -1, 10 )
+        
+      });
+      
+    </script>
+  </body>
+</html>
